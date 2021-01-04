@@ -1,23 +1,8 @@
-$black-color:#333b3f;
-$dark-black-color:#000;
+
 $border-color: #efefef;
 $white-color: #fff;
-$pink-color: #ec466c;
 $blue-color: #00afff;
-$yellow-color: #ffb419;
-$purple-color: #2a1e5c;
-$green-color:#22c993;
-$grey-color: #849299;
-$light-grey-color: #b1babf;
-$dark-grey-color: #4a5f6a;
-$body-tabs-bg-color: #eef6fa;
-$body-tabs-text-color: #96a5ad;
-$collapse-bg-color: #eef6fa;
 $border-radius: 0.25rem;
-$font-weight-600: 600;
-$font-size-14: 14px;
-$font-size-12: 12px;
-$font-size-10: 10px;
 $card-bg-color: #f6f8fa;
 
 .dragContainer {
@@ -30,7 +15,7 @@ $card-bg-color: #f6f8fa;
    
 
     & .dragRemove {
-        border-radius: 0.25rem;
+        border-radius: $border-radius;
         border: 1px solid $border-color;
         border-bottom-right-radius: 0px;
         border-bottom-left-radius: 0px;
@@ -40,14 +25,14 @@ $card-bg-color: #f6f8fa;
         text-align: left;
         padding: 15px;
         padding-right: 10px;
-
+        font-weight: bold;
 
     }
 
     & .draggable {
         height: 50px;
         border: 1px solid $border-color;
-        border-radius: 0.25rem;
+        border-radius: $border-radius;
         margin: 30px auto;
         background: $white-color;
         display: flex;
@@ -63,7 +48,7 @@ $card-bg-color: #f6f8fa;
     & .cardBorder{
         background: $card-bg-color;
         border: 1px solid $border-color;
-        border-radius: 0.25rem;
+        border-radius: $border-radius;
         height: 100vh;
         border-top-right-radius: 0px;
         border-top-left-radius: 0px;
@@ -100,9 +85,4 @@ $card-bg-color: #f6f8fa;
 
     }
 
-    &  .bgColor {
-        background: red !important;
-        visibility: visible !important;
-        overflow: initial !important;
-    }
 }
