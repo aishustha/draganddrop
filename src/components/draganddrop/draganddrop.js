@@ -68,7 +68,7 @@ export default class draganddrop extends Component {
                     title="To Do" task={tasks.toDo} 
                     type="toDo"
                     dragStart={this.onDragStart}
-
+                    className={dragandropStyle.colorRed}
                     >
                     
                     </Column>

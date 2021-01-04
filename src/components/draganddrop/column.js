@@ -65,14 +65,14 @@ export default class Column extends Component {
                             className={dragandropStyle.newTaskField}
                         >
                             <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Enter a note" className={dragandropStyle.newTaskFieldForm}/>   
-                                <div className={dragandropStyle.btnFlex}>
-                                    <Button className={dragandropStyle.addButton}>
-                                        Add
-                                    </Button>
-                                    <Button className={dragandropStyle.cancelButton} onClick={this.handleClose}>
-                                        Cancel
-                                    </Button>
-                                </div>
+                            <div className={dragandropStyle.btnFlex}>
+                                <Button className={dragandropStyle.addButton}>
+                                    Add
+                                </Button>
+                                <Button className={dragandropStyle.cancelButton} onClick={this.handleClose}>
+                                    Cancel
+                                </Button>
+                            </div>
                         </Menu>
         
                             {this.props.task.map(t=>{

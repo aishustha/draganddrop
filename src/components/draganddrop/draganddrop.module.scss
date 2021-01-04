@@ -93,6 +93,7 @@ $green-color:#22c993;
         position:absolute;
         bottom: 10px;
         left: 20px; 
+        font-size: 14px;
     }
 
 }
@@ -165,6 +166,13 @@ $green-color:#22c993;
 }
 
 //responsive
+@media (max-width: 1199.98px) {
+    .dragContainer {
+        & .draggable {
+            padding-bottom: 50px;
+        }
+    }
+}
 
 @media (max-width: 767.98px) {
     .dragContainer {
@@ -174,10 +182,6 @@ $green-color:#22c993;
         }
         & .dragFlex {
             display: block;
-        }
-
-        & .draggable {
-            padding-bottom: 60px;
         }
     }
 }
