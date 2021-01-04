@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import dragandropStyle from './draganddrop.module.scss';
-
+import Grid from '@material-ui/core/Grid';
+import Column from './column';
 
 export default class draganddrop extends Component {
     state = {
         tasks: [
-            {id: "1", taskName:"hike", type:"toDo", backgroundColor:"pink"},
-            {id: "2", taskName:"travel", type: "toDo", backgroundColor: "pink"},
-            {id: "3", taskName:"Read book", type:"inProgress", backgroundColor:"yellow"},
-            {id: "4", taskName:"Pay bills", type: "inProgress", backgroundColor: "yellow"},
-            {id: "5", taskName: "Go to the gym", type: "Done", backgroundColor: "blue"},
-            {id: "6", taskName: "Play baseball", type: "Done", backgroundColor: "blue"}
-        ]
+            {id: "1", taskName:"Implement Dashboard Layout", type:"toDo"},
+            {id: "2", taskName:"Add button to card header", type: "toDo"},
+            {id: "3", taskName:"Allow users to remove tasks", type: "toDo"},
+            {id: "4", taskName:"Allow users to add tasks", type:"inProgress"},
+            {id: "5", taskName: "Implement Grid Card Layout", type: "Done"},
+            {id: "6", taskName: "Drag and Drop Tasks", type: "Done"}
+        ],
+
     }
 
 
@@ -26,16 +28,14 @@ export default class draganddrop extends Component {
 
     onDrop = (event, cat) => {
         let taskName = event.dataTransfer.getData("taskName");
-
         let tasks = this.state.tasks.filter((task) => {
             if (task.taskName == taskName) {
                 task.type = cat;
             }
             return task;
         });
-
         this.setState({
-            ...this.state,
+            ...this.state, // spread operator (...)
             tasks
         });   
     }
@@ -48,45 +48,41 @@ export default class draganddrop extends Component {
 
         this.state.tasks.forEach ((task) => {
             tasks[task.type].push(
-                <div key={task.id}
-                    onDragStart = {(event) => this.onDragStart(event, task.taskName)}
-                    draggable
-                    className={dragandropStyle.draggable}
-                    style={{backgroundColor: task.backgroundColor}}>
-                    {task.taskName}    
-                </div>
+                task
             );
         });
+
         return (
             <div className={dragandropStyle.dragContainer}>
-                <h2 className={dragandropStyle.header}>To Do List Drag & Drop</h2>
-                <div className={dragandropStyle.toDo}
-                    onDragOver={(event)=>this.onDragOver(event)}
-                    onDrop={(event)=>{this.onDrop(event, "toDo")}}
-                >
-                    <span className={dragandropStyle.groupHeader}>
-                        To Do
-                    </span>
-                    {tasks.toDo}
-                </div>
-                <div className={dragandropStyle.inProgress}
-                    onDragOver={(event)=>this.onDragOver(event)}
-                    onDrop={(event)=>{this.onDrop(event, "inProgress")}}
-                >
-                    <span className={dragandropStyle.groupHeader}>
-                        In Progress
-                    </span>
-                    {tasks.inProgress}
-                </div>
-                <div className={dragandropStyle.droppable}
-                    onDragOver={(event)=>this.onDragOver(event)}
-                    onDrop={(event)=>this.onDrop(event, "Done")}>
-                    <span className={dragandropStyle.groupHeader}>
-                        Done
-                    </span>
-                    {tasks.Done}
-                </div>
-                
+                <h2>Drag & Drop</h2>
+                <Grid container className={dragandropStyle.dragFlex} spacing={5}>
+
+                    <Column 
+                    dragOver={this.onDragOver} 
+                    drop={this.onDrop} 
+                    title="To Do" task={tasks.toDo} 
+                    type="toDo"
+                    dragStart={this.onDragStart}
+
+                    />
+                    <Column 
+                        dragOver={this.onDragOver} 
+                        drop={this.onDrop} 
+                        title="In Progress" 
+                        task={tasks.inProgress} 
+                        type="inProgress"
+                        dragStart={this.onDragStart}
+                    />
+                    <Column 
+                        dragOver={this.onDragOver} 
+                        drop={this.onDrop} 
+                        title="Done" 
+                        task={tasks.Done} 
+                        type="Done"
+                        dragStart={this.onDragStart}
+                    />
+                </Grid>
+         
             </div>
         );
     }
