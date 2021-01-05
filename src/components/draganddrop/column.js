@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
+import CardTask from './taskCard';
 
 export default class Column extends Component {
   
@@ -74,27 +75,11 @@ export default class Column extends Component {
                                 </Button>
                             </div>
                         </Menu>
-        
-                            {this.props.task.map(t=>{
-                               
-                               return <div className={dragandropStyle.cardRelative}>
-                               <div key={t.id}
-                                    onDragStart = {(event) => this.props.dragStart(event, t.taskName)}
-                                    draggable
-                                    className={dragandropStyle.draggable}>
-                                    {t.taskName} 
-                                </div>
-
-                                <div  className={dragandropStyle.addedUser}>
-                                {t.add}   
-                                </div>
-
-                                <IconButton className={dragandropStyle.closeIcon}>
-                                    <i class="fas fa-times"></i>
-                                </IconButton>
-                               </div>
-                            }  
-                            )}
+                            
+                            
+                            {this.props.task.map((t, index)=>
+                                <CardTask task={t} key={index} dragStart={this.props.dragStart} deleteCard={this.props.deleteCard}/>
+                             )}
                         </Typography>
                     </CardContent>
                 </Card>

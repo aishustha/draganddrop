@@ -3,11 +3,6 @@ import dragandropStyle from './draganddrop.module.scss';
 import Grid from '@material-ui/core/Grid';
 import Column from './column';
 
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-
-
 export default class draganddrop extends Component {
     state = {
         tasks: [
@@ -44,6 +39,16 @@ export default class draganddrop extends Component {
             tasks
         });   
     }
+
+    delete =(taskId)=> {
+       console.log(taskId, 'det rom dragasdf');
+   
+        let tasks = this.state.tasks.filter(task => task.id !== taskId);
+        this.setState({
+            ...this.state,
+            tasks
+        })
+    }
     render() {
         var tasks = {
             toDo: [],
@@ -61,7 +66,6 @@ export default class draganddrop extends Component {
             <div className={dragandropStyle.dragContainer}>
                 <h2>Drag & Drop</h2>
                 <Grid container className={dragandropStyle.dragFlex} spacing={3}>
-
                     <Column 
                     dragOver={this.onDragOver} 
                     drop={this.onDrop} 
@@ -69,8 +73,8 @@ export default class draganddrop extends Component {
                     type="toDo"
                     dragStart={this.onDragStart}
                     className={dragandropStyle.colorRed}
+                    deleteCard={this.delete}
                     >
-                    
                     </Column>
 
                     <Column 
@@ -80,6 +84,7 @@ export default class draganddrop extends Component {
                         task={tasks.inProgress} 
                         type="inProgress"
                         dragStart={this.onDragStart}
+                        deleteCard={this.delete}
                     />
                     <Column 
                         dragOver={this.onDragOver} 
@@ -88,6 +93,7 @@ export default class draganddrop extends Component {
                         task={tasks.Done} 
                         type="Done"
                         dragStart={this.onDragStart}
+                        deleteCard={this.delete}
                     />
                 </Grid>
          
